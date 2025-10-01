@@ -1,0 +1,8 @@
+
+<svg width="200" height="60" viewBox="0 0 250 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M50.5 15C40.5 25 35 35 45 45C55 55 65 40 70 30" stroke="#FF6600" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M40 30C35 25 30 35 40 40" stroke="#003366" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="40" cy="35" r="3" fill="#00AEEF"/>
+  <text x="80" y="30" font-family="Inter, sans-serif" font-size="20" font-weight="800" fill="#003366">EAGLEEYES</text>
+  <text x="80" y="55" font-family="Inter, sans-serif" font-size="16" font-weight="500" fill="#FF6600">TECHNOLOGY</text>
+</svg>

@@ -1,0 +1,3 @@
+
+This folder is for your images. You can add your product, blog, and course images here.
+For example: product-solar-panel.jpg, blog-cctv-trends.png, etc.
