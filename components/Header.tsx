@@ -27,7 +27,7 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <NavLink to="/" className="flex-shrink-0">
-            <img src="assets/logo.svg" alt="Eagles Eye Technology Logo" className="h-12 w-auto" />
+            <img src="./assets/logo.svg" alt="Eagles Eye Technology Logo" className="h-12 w-auto" />
           </NavLink>
           <nav className="hidden md:flex items-center space-x-4">
             <NavLink to="/" className={navLinkClass}>Home</NavLink>
