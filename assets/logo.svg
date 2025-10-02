@@ -1,8 +1,23 @@
+<svg viewBox="0 0 250 125" xmlns="http://www.w.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <radialGradient id="pupil-gradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" style="stop-color:#FFD700; stop-opacity:1"></stop>
+      <stop offset="100%" style="stop-color:#FF6600; stop-opacity:1"></stop>
+    </radialGradient>
+  </defs>
+  <g transform="translate(10, 10)">
+    <!-- Main eye shape -->
+    <path d="M 0 52.5 C 35 -20, 195 -20, 230 52.5 C 195 125, 35 125, 0 52.5 Z" fill="#003366"></path>
 
-<svg width="200" height="60" viewBox="0 0 250 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M50.5 15C40.5 25 35 35 45 45C55 55 65 40 70 30" stroke="#FF6600" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M40 30C35 25 30 35 40 40" stroke="#003366" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="40" cy="35" r="3" fill="#00AEEF"/>
-  <text x="80" y="30" font-family="Inter, sans-serif" font-size="20" font-weight="800" fill="#003366">EAGLEEYES</text>
-  <text x="80" y="55" font-family="Inter, sans-serif" font-size="16" font-weight="500" fill="#FF6600">TECHNOLOGY</text>
+    <!-- Inner iris shape -->
+    <path d="M 60 52.5 C 60 30, 170 30, 170 52.5 C 170 75, 60 75, 60 52.5 Z" fill="white"></path>
+    <path d="M 70 52.5 C 70 35, 160 35, 160 52.5 C 160 70, 70 70, 70 52.5 Z" fill="#003366"></path>
+
+    <!-- Pupil -->
+    <circle cx="115" cy="52.5" r="20" fill="url(#pupil-gradient)"></circle>
+    <circle cx="122" cy="45.5" r="5" fill="white" fill-opacity="0.8"></circle>
+
+    <!-- Orange swoosh -->
+    <path d="M 25 80 C 115 65, 205 85, 205 85" stroke="#FF6600" fill="transparent" stroke-width="12" stroke-linecap="round"></path>
+  </g>
 </svg>

@@ -10,10 +10,11 @@ export interface User {
   email: string;
   name: string;
   role: Role;
+  password?: string;
 }
 
 export interface ProductCategory {
-  id: string;
+  id:string;
   name: string;
 }
 
@@ -26,6 +27,10 @@ export interface Product {
   imageUrl: string;
   stock: number;
   specs: Record<string, string>;
+}
+
+export interface CartItem extends Product {
+  quantity: number;
 }
 
 export interface BlogPost {

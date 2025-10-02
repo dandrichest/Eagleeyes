@@ -1,15 +1,15 @@
 
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { Role } from '../types';
 
-const LoginPage: React.FC = () => {
+const AdminLoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { login } = useAuth();
+  const { login, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -18,14 +18,17 @@ const LoginPage: React.FC = () => {
     setIsLoading(true);
     const { error: errorMessage, user } = await login(email, password);
     setIsLoading(false);
+
     if (user) {
       if (user.role === Role.ADMIN) {
         navigate('/admin');
       } else {
-        navigate('/');
+        // Log out the non-admin user immediately and show an error.
+        logout();
+        setError('Access Denied. This login is for administrators only.');
       }
     } else {
-      setError(errorMessage || 'An unknown error occurred.');
+      setError(errorMessage || 'Invalid email or password.');
     }
   };
 
@@ -34,8 +37,8 @@ const LoginPage: React.FC = () => {
       <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg">
         <div className="text-center mb-8">
             <img src="assets/logo.svg" alt="Eagles Eye Technology Logo" className="h-16 w-auto mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-primary">Login to your Account</h2>
-            <p className="text-gray-500">Welcome back!</p>
+            <h2 className="text-2xl font-bold text-primary">Admin Portal Login</h2>
+            <p className="text-gray-500">Please enter your credentials.</p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
@@ -74,16 +77,8 @@ const LoginPage: React.FC = () => {
               {isLoading ? 'Signing in...' : 'Sign in'}
             </button>
           </div>
-           <div className="text-sm text-center text-gray-500">
-            <p>
-              Don't have an account?{' '}
-              <Link to="/register" className="font-medium text-secondary hover:underline">
-                Register now
-              </Link>
-            </p>
-          </div>
           <div className="text-xs text-gray-500 text-center border-t pt-4 mt-4">
-            <p>Customer: <strong>customer@example.com</strong> / <strong>password123</strong></p>
+            <p>Admin Login: <strong>admin@eagleeyes.com</strong> / <strong>admin123</strong></p>
           </div>
         </form>
       </div>
@@ -91,4 +86,4 @@ const LoginPage: React.FC = () => {
   );
 };
 
-export default LoginPage;
+export default AdminLoginPage;

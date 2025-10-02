@@ -1,8 +1,8 @@
 import { User, Role, Product, ProductCategory, BlogPost, Course } from '../types';
 
 export const MOCK_USERS: User[] = [
-  { id: '1', email: 'admin@eagleeyes.com', name: 'Admin User', role: Role.ADMIN },
-  { id: '2', email: 'customer@example.com', name: 'John Doe', role: Role.CUSTOMER },
+  { id: '1', email: 'admin@eagleeyes.com', name: 'Admin User', role: Role.ADMIN, password: 'admin123' },
+  { id: '2', email: 'customer@example.com', name: 'John Doe', role: Role.CUSTOMER, password: 'password123' },
 ];
 
 export const PRODUCT_CATEGORIES: ProductCategory[] = [
