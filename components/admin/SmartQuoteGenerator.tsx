@@ -25,10 +25,6 @@ const SmartQuoteGenerator: React.FC = () => {
       setError('Please describe the customer\'s needs.');
       return;
     }
-    if (!process.env.API_KEY) {
-        setError('Gemini API key is not configured. Please set the API_KEY environment variable.');
-        return;
-    }
     setError('');
     setIsLoading(true);
     setQuote(null);

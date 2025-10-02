@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
@@ -39,6 +40,7 @@ const Header: React.FC = () => {
             {user ? (
               <>
                 <span className="text-dark text-sm font-medium hidden sm:block">Welcome, {user.name}</span>
+                <NavLink to="/my-courses" className={navLinkClass}>My Courses</NavLink>
                 <button
                   onClick={handleLogout}
                   className="px-4 py-2 bg-secondary text-white rounded-md text-sm font-medium hover:bg-opacity-80 transition"

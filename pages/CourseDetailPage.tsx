@@ -1,10 +1,32 @@
-import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+
+import React, { useState, useEffect } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { MOCK_COURSES } from '../constants/data';
+import { useAuth } from '../hooks/useAuth';
 
 const CourseDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const course = MOCK_COURSES.find(c => c.id === id);
+  const { user, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  const [isEnrolled, setIsEnrolled] = useState(false);
+  const [confirmationMessage, setConfirmationMessage] = useState('');
+
+  useEffect(() => {
+    if (user && id) {
+      const storageKey = `eagleseye_enrollments_${user.id}`;
+      const storedEnrollments = localStorage.getItem(storageKey);
+      if (storedEnrollments) {
+        const enrolledIds: string[] = JSON.parse(storedEnrollments);
+        if (enrolledIds.includes(id)) {
+          setIsEnrolled(true);
+        }
+      }
+    } else {
+      setIsEnrolled(false);
+    }
+  }, [user, id]);
 
   if (!course) {
     return <div className="text-center py-10">
@@ -12,6 +34,27 @@ const CourseDetailPage: React.FC = () => {
       <Link to="/training" className="text-secondary hover:underline mt-4 inline-block">Back to Training Portal</Link>
     </div>;
   }
+
+  const handleEnroll = () => {
+    if (!isAuthenticated || !user) {
+        navigate('/login');
+        return;
+    }
+    if (!id) return;
+
+    const storageKey = `eagleseye_enrollments_${user.id}`;
+    const storedEnrollments = localStorage.getItem(storageKey);
+    const enrolledIds: string[] = storedEnrollments ? JSON.parse(storedEnrollments) : [];
+
+    if (!enrolledIds.includes(id)) {
+        enrolledIds.push(id);
+        localStorage.setItem(storageKey, JSON.stringify(enrolledIds));
+        setIsEnrolled(true);
+        setConfirmationMessage('You have successfully enrolled!');
+        setTimeout(() => setConfirmationMessage(''), 5000);
+    }
+  };
+
 
   return (
     <div className="bg-white p-6 md:p-8 rounded-lg shadow-xl">
@@ -34,9 +77,18 @@ const CourseDetailPage: React.FC = () => {
         <div className="lg:col-span-1">
           <div className="sticky top-24 bg-light p-6 rounded-lg shadow-md">
             <p className="text-4xl font-bold text-secondary mb-4">₦{course.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-            <button className="w-full bg-secondary text-white font-bold py-3 px-6 rounded-lg hover:bg-opacity-80 transition duration-300">
-              Enroll Now
+            <button
+              onClick={handleEnroll}
+              disabled={isEnrolled}
+              className={`w-full text-white font-bold py-3 px-6 rounded-lg transition duration-300 ${
+                isEnrolled
+                ? 'bg-green-600 cursor-not-allowed'
+                : 'bg-secondary hover:bg-opacity-80'
+              }`}
+            >
+              {isEnrolled ? 'Enrolled' : 'Enroll Now'}
             </button>
+            {confirmationMessage && <p className="text-green-600 text-sm mt-2 text-center font-semibold">{confirmationMessage}</p>}
             <ul className="mt-6 space-y-3 text-sm text-gray-700">
               <li className="flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>

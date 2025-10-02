@@ -3,9 +3,8 @@ import React, { useState } from 'react';
 import InventoryManager from '../components/admin/InventoryManager';
 import CourseManager from '../components/admin/CourseManager';
 import BlogManager from '../components/admin/BlogManager';
-import SmartQuoteGenerator from '../components/admin/SmartQuoteGenerator';
 
-type Tab = 'inventory' | 'courses' | 'blog' | 'quote';
+type Tab = 'inventory' | 'courses' | 'blog';
 
 const AdminDashboardPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<Tab>('inventory');
@@ -18,8 +17,6 @@ const AdminDashboardPage: React.FC = () => {
         return <CourseManager />;
       case 'blog':
         return <BlogManager />;
-      case 'quote':
-        return <SmartQuoteGenerator />;
       default:
         return null;
     }
@@ -43,7 +40,6 @@ const AdminDashboardPage: React.FC = () => {
         <TabButton tab="inventory" label="Inventory Management" />
         <TabButton tab="courses" label="Course Management" />
         <TabButton tab="blog" label="Blog Management" />
-        <TabButton tab="quote" label="Smart Quote Generator" />
       </div>
       <div>
         {renderContent()}

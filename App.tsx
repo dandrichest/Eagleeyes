@@ -14,6 +14,8 @@ import CourseDetailPage from './pages/CourseDetailPage';
 import LoginPage from './pages/LoginPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import ProtectedRoute from './components/ProtectedRoute';
+import MyCoursesPage from './pages/MyCoursesPage';
+import AuthenticatedRoute from './components/AuthenticatedRoute';
 
 const App: React.FC = () => {
   return (
@@ -29,6 +31,14 @@ const App: React.FC = () => {
             <Route path="/training" element={<TrainingPage />} />
             <Route path="/training/:id" element={<CourseDetailPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route 
+              path="/my-courses"
+              element={
+                <AuthenticatedRoute>
+                  <MyCoursesPage />
+                </AuthenticatedRoute>
+              }
+            />
             <Route 
               path="/admin" 
               element={

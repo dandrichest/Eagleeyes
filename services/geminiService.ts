@@ -1,13 +1,29 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { Product } from '../types';
 
-if (!process.env.API_KEY) {
-  console.warn("API_KEY environment variable not set. Gemini API calls will fail.");
-}
+let ai: GoogleGenAI | null = null;
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY! });
+const getAiClient = (): GoogleGenAI | null => {
+  if (ai) {
+    return ai;
+  }
+  // Safely check for process and API_KEY to prevent crashing in browser environments.
+  // This code now runs only when the service is first used, not on app load.
+  if (typeof process !== 'undefined' && process.env && process.env.API_KEY) {
+    ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    return ai;
+  } else {
+    console.warn("API_KEY environment variable not set. Gemini API calls will fail.");
+    return null;
+  }
+};
 
 export const generateSmartQuote = async (userInput: string, productCatalog: Product[]): Promise<any> => {
+  const geminiClient = getAiClient();
+  if (!geminiClient) {
+    throw new Error("Gemini service is not available. API_KEY is not configured.");
+  }
+  
   const productInfo = productCatalog.map(p => `- ${p.name} (ID: ${p.id}, Price: ₦${p.price}, Category: ${p.category})`).join('\n');
 
   const prompt = `
@@ -22,7 +38,7 @@ export const generateSmartQuote = async (userInput: string, productCatalog: Prod
   `;
 
   try {
-    const response = await ai.models.generateContent({
+    const response = await geminiClient.models.generateContent({
       model: "gemini-2.5-flash",
       contents: prompt,
       config: {
