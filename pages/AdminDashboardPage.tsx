@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import InventoryManager from '../components/admin/InventoryManager';
 import CourseManager from '../components/admin/CourseManager';

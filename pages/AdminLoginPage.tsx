@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
@@ -36,7 +35,7 @@ const AdminLoginPage: React.FC = () => {
     <div className="flex items-center justify-center py-12">
       <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg">
         <div className="text-center mb-8">
-            <img src="./assets/logo.svg" alt="Eagles Eye Technology Logo" className="h-16 w-auto mx-auto mb-4" />
+            <img src="./assets/images/logo.svg" alt="Eagles Eye Technology Logo" className="h-16 w-auto mx-auto mb-4" />
             <h2 className="text-2xl font-bold text-primary">Admin Portal Login</h2>
             <p className="text-gray-500">Please enter your credentials.</p>
         </div>

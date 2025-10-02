@@ -1,0 +1,23 @@
+<svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+  <!-- Eye Icon -->
+  <g transform="translate(150, 45) scale(0.6)">
+    <path d="M12.5,100 C12.5,100 70,-20 237.5,-20 C405,-20 487.5,100 487.5,100 C487.5,100 405,220 237.5,220 C70,220 12.5,100 12.5,100 Z" fill="#003366" transform="scale(0.5) translate(-12.5, -50)"/>
+    <circle cx="120" cy="40" r="60" fill="#003366"/>
+    <circle cx="120" cy="40" r="30" fill="url(#pupilGradient)"/>
+    <path d="M20,70 Q120,50 220,65" stroke="#FF6600" stroke-width="15" fill="none" stroke-linecap="round"/>
+    <circle cx="135" cy="25" r="10" fill="white" fill-opacity="0.9"/>
+  </g>
+  
+  <defs>
+    <radialGradient id="pupilGradient" cx="0.5" cy="0.5" r="0.5" fx="0.4" fy="0.4">
+      <stop offset="0%" stop-color="#FFD700" />
+      <stop offset="100%" stop-color="#FF6600" />
+    </radialGradient>
+  </defs>
+
+  <!-- Text -->
+  <text x="150" y="100" text-anchor="middle" font-size="20" font-weight="800" fill="#1A202C" letter-spacing="0.05em">EAGLEYES</text>
+  <text x="150" y="120" text-anchor="middle" font-size="12" font-weight="600" fill="#003366" letter-spacing="0.1em">TECHNOLOGY</text>
+  <line x1="100" y1="127" x2="200" y2="127" stroke="#FF6600" stroke-width="2"/>
+  <text x="150" y="138" text-anchor="middle" font-size="7" fill="#4A5568">RC:1850670</text>
+</svg>
